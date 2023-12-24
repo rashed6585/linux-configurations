@@ -1,7 +1,7 @@
 <center> <h2 style="color:Maroon;">Tips and Tricks</h2> </center>
 
 
-<!-- <details> -->
+<details>
 <summary><b style="color:Maroon;">Windows Subsystem for Linux (WSL)</b></summary>
 
 **Enable the Windows Subsystem for Linux:**
@@ -18,7 +18,6 @@ dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /nores
 ```powershell
 wsl --install
 wsl --set-default-version 2
-wsl -l -v
 ```
 <sub>Install Windows Subsystem for Linux (WSL) Distribution using Command<sub>
 
@@ -26,8 +25,15 @@ wsl -l -v
 wsl --list --online
 # install distribution
 wsl --install -d <distroName>
+# list of distribution
+wsl -l -v
+# start distribution
+wsl -d <distroName>
+# logout distribution
+wsl --terminate <distroName>
 # uninstall distribution with below command and remove from app
 wsl --unregister <distroName>
+rm -rf <distro location>
 ```
 **Enable same/different version multiple distribution in WSL**
 
@@ -45,33 +51,62 @@ wsl -d Ubuntu-test-base-2
 **or**
 <sub>get distribution manually from below link<sub>
 
-https://cloud-images.ubuntu.com/releases/22.04/release-20231211/
+https://cloud-images.ubuntu.com/wsl/
 
 <sub>Must use powershell and following command to download the Ubuntu WSL tarball<sub> 
 
 ```powershell
-# cd to download location
+Remove-Item alias:curl
+# cd to download location D:\Software\OS\wsl-distribution
 curl (("https://cloud-images.ubuntu.com",
-"releases/22.04/release-20231130",
-"ubuntu-22.04-server-cloudimg-amd64-root.tar.xz") -join "/") `
---output ubuntu-22.04-wsl-root-tar.xz
+"wsl/jammy/current",
+"ubuntu-jammy-wsl-amd64-wsl.rootfs.tar.gz") -join "/") `
+--output ubuntu-jammy-wsl-amd64-wsl.rootfs.tar.gz 
 # wsl --import <Distribution Name> <Installation Folder> <Ubuntu WSL2 Image Tarball path>
-wsl --import Ubuntu-test-base-3 D:\Software\OS\wsl-distribution\test-base-3 D:\Software\OS\wsl-distribution\ubuntu-22.04-wsl-root-tar.gz
+wsl --import Ubuntu-22.04-test D:\Software\OS\wsl-distribution\test-base-3 D:\Software\OS\wsl-distribution\ubuntu-jammy-wsl-amd64-wsl.rootfs.tar.gz
 wsl -l -v
+wsl -d Ubuntu-22.04-test
+```
 
-```
 <sub>or other version<sub>
+
 ```powershell
-# cd to download location
+Remove-Item alias:curl
+# cd to download location D:\Software\OS\wsl-distribution
 curl (("https://cloud-images.ubuntu.com",
-"releases/23.04/release-20231129",
-"ubuntu-23.04-server-cloudimg-amd64-root.tar.xz") -join "/") `
---output ubuntu-23.04-wsl-root-tar.xz
+"wsl/lunar/20231219",
+"ubuntu-lunar-wsl-amd64-wsl.rootfs.tar.gz") -join "/") `
+--output ubuntu-lunar-wsl-amd64-wsl.rootfs.tar.gz
 # wsl --import <Distribution Name> <Installation Folder> <Ubuntu WSL2 Image Tarball path>
-wsl --import Ubuntu-23.04 D:\Software\OS\wsl-distribution\test-base-3 D:\Software\OS\wsl-distribution\ubuntu-23.04-wsl-root-tar.gz
+wsl --import Ubuntu-23.04-test D:\Software\OS\wsl-distribution\test-base-3 D:\Software\OS\wsl-distribution\ubuntu-lunar-wsl-amd64-wsl.rootfs.tar.gz
 wsl -l -v
+wsl -d Ubuntu-23.04-test
 ```
-<!-- </details> -->
+<sub>the environment that it has logged in as the root user instead of a custom user that you set up as part of the "base" environment. The custom user exists, but is not configured as the default. You can either start the environment using:<sub>
+
+<a style="color:Maroon;">sample user: u-2304-wsl-node-01</a>
+
+
+```bash
+# add a new user to system:
+NEW_USER=<USERNAME>
+# add the user to the sudo group and set password:
+useradd -m -G sudo -s /bin/bash "$NEW_USER"
+passwd "$NEW_USER"
+# switch to default instead of root
+tee /etc/wsl.conf <<_EOF
+[user]
+default=${NEW_USER}
+_EOF
+```
+<sub>log out and log in again<sub>
+
+```powershell
+wsl --terminate <Distribution Name>
+wsl -d <Distribution Name>
+```
+
+</details>
 
 
 <details>
