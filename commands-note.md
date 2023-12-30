@@ -1,4 +1,5 @@
 <center> <h2 style="color:Maroon;">Tips and Tricks</h2> </center>
+<center> <h6 style="color:Maroon;">by Rashid</h6> </center>
 
 
 <details>
@@ -17,6 +18,9 @@ dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /nores
 
 ```powershell
 wsl --install
+wsl --update
+wsl --status
+wsl --version
 wsl --set-default-version 2
 ```
 <sub>Install Windows Subsystem for Linux (WSL) Distribution using Command<sub>
@@ -110,9 +114,95 @@ wsl -d <Distribution Name>
 
 
 <details>
-<summary><b style="color:Maroon;">git</b></summary>
+<summary><b style="color:Maroon;">Docker on WSL and Ubuntu</b></summary>
 
+**install Docker Engine on wsl**
 
+https://docs.docker.com/engine/install/ubuntu/
+
+<sub>Prepare system Remove Docker residue</sub>
+
+```bash
+sudo apt-get update
+sudo apt-get upgrade
+for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do sudo apt-get remove $pkg; done
+sudo apt remove docker-desktop
+rm -r $HOME/.docker/desktop
+sudo rm /usr/local/bin/com.docker.cli
+sudo apt purge docker-desktop
+```
+<sub>Set up the Docker repository</sub>
+
+```bash
+# Add Docker's official GPG key:
+sudo apt-get update
+sudo apt-get install ca-certificates curl gnupg
+sudo install -m 0755 -d /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+sudo chmod a+r /etc/apt/keyrings/docker.gpg
+```
+
+```bash
+# Add the repository to Apt sources:
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt-get update
+```
+
+<sub>To install the latest version, run:</sub>
+
+```bash
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+```
+<sub>Or to install Specific version</sub>
+
+```bash
+apt-cache madison docker-ce | awk '{ print $3 }'
+# list of version for example 5:24.0.0-1~ubuntu.22.04~jammy
+VERSION_STRING=5:24.0.0-1~ubuntu.22.04~jammy
+sudo apt-get install docker-ce=$VERSION_STRING docker-ce-cli=$VERSION_STRING containerd.io docker-buildx-plugin docker-compose-plugin
+```
+<sub>Start Docker service</sub>
+
+```bash
+sudo service docker start
+sudo service docker status
+```kv
+
+<sub>run the hello-world image</sub>
+
+```bash
+sudo docker run hello-world
+```
+
+<sub>Run Docker as a non-root user</sub>
+
+```bash
+USER=<USERNAME> #u-2304-wsl-node-02
+sudo groupadd docker
+
+sudo usermod -aG docker $USER
+```
+
+<Sub>if error "Docker is not running" found, reason this errors occurs is because Ubuntu 22.04 LTS uses iptables-nft by default. Need to switch to iptables-legacy so that Docker will work again:</Sub>
+
+```bash
+sudo update-alternatives --config iptables
+# Enter 1 to select iptables-legacy
+sudo service docker start
+```
+
+**Install docker desktop on ubuntu**
+
+https://docs.docker.com/desktop/install/ubuntu/
+
+<sub>To install docker desktop on nested ubuntu VM need do below steps:
+-install ubuntu on hyper-V
+-enable hyper-V from powershell
+-check kvm in nested ubuntu
+</sub>
 </details>
 
 
