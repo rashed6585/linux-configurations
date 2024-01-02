@@ -169,7 +169,7 @@ sudo apt-get install docker-ce=$VERSION_STRING docker-ce-cli=$VERSION_STRING con
 ```bash
 sudo service docker start
 sudo service docker status
-```kv
+```
 
 <sub>run the hello-world image</sub>
 
