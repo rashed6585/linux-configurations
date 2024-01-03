@@ -39,6 +39,7 @@ wsl --terminate <distroName>
 wsl --unregister <distroName>
 rm -rf <distro location>
 ```
+<sub> defauld locaiton of online destro:: C:\Users\islam.rashidul\AppData\Local\Packages\CanonicalGroupLimited.Ubuntu22.04LTS_79rhkp1fndgsc\LocalState</sub>
 **Enable same/different version multiple distribution in WSL**
 
 ```powershell
@@ -57,7 +58,7 @@ wsl -d Ubuntu-test-base-2
 
 https://cloud-images.ubuntu.com/wsl/
 
-<sub>Must use powershell and following command to download the Ubuntu WSL tarball<sub> 
+<sub>Must use powershell and following command to download the Ubuntu WSL tarball</sub> 
 
 ```powershell
 Remove-Item alias:curl
