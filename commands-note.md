@@ -40,6 +40,7 @@ wsl --unregister <distroName>
 rm -rf <distro location>
 ```
 <sub> defauld locaiton of online destro:: C:\Users\islam.rashidul\AppData\Local\Packages\CanonicalGroupLimited.Ubuntu22.04LTS_79rhkp1fndgsc\LocalState</sub>
+
 **Enable same/different version multiple distribution in WSL**
 
 ```powershell
