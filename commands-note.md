@@ -39,7 +39,7 @@ wsl --terminate <distroName>
 wsl --unregister <distroName>
 rm -rf <distro location>
 ```
-<sub> defauld locaiton of online destro:: C:\Users\islam.rashidul\AppData\Local\Packages\CanonicalGroupLimited.Ubuntu22.04LTS_79rhkp1fndgsc\LocalState</sub>
+<sub> default locaiton of online destro:: C:\Users\islam.rashidul\AppData\Local\Packages\CanonicalGroupLimited.Ubuntu22.04LTS_79rhkp1fndgsc\LocalState</sub>
 
 **Enable same/different version multiple distribution in WSL**
 
@@ -103,6 +103,8 @@ passwd "$NEW_USER"
 tee /etc/wsl.conf <<_EOF
 [user]
 default=${NEW_USER}
+[network]
+generateResolvConf = false
 _EOF
 ```
 <sub>log out and log in again<sub>
@@ -110,6 +112,15 @@ _EOF
 ```powershell
 wsl --terminate <Distribution Name>
 wsl -d <Distribution Name>
+```
+
+**Issues resolution**
+
+* <sub>ping: www.google.com: Temporary failure in name resolution<sub>
+
+```bash
+sudo bash -c 'echo "nameserver 8.8.8.8" > /etc/resolv.conf'
+sudo bash -c 'echo "nameserver 8.8.4.4" >> /etc/resolv.conf'
 ```
 
 </details>
@@ -169,8 +180,8 @@ sudo apt-get install docker-ce=$VERSION_STRING docker-ce-cli=$VERSION_STRING con
 <sub>Start Docker service</sub>
 
 ```bash
-sudo service docker start
-sudo service docker status
+sudo service docker start # or sudo systemctl docker start
+sudo service docker status # or sudo systemctl docker status
 ```
 
 <sub>run the hello-world image</sub>
@@ -223,4 +234,20 @@ https://github.com/parafoxia/python-scripts/tree/main
 https://vegastack.com/tutorials/how-to-install-python-3-11-on-ubuntu-22-04/
 
 https://phoenixnap.com/kb/how-to-install-python-3-ubuntu
+</details>
+
+<details>
+<summary><b style="color:Maroon;">common command</b></summary>
+
+
+```bash
+# switch to root user
+sudo -i
+# check ip
+ip addr
+ip a
+ip addr show eth0 | grep -oP '(?<=inet\s)\d+(\.\d+){3}'
+ip addr | grep eth0
+
+```
 </details>
