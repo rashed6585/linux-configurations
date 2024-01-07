@@ -218,6 +218,142 @@ https://docs.docker.com/desktop/install/ubuntu/
 </sub>
 </details>
 
+<!-- <details>
+<summary><b style="color:Maroon;">git</b></summary> -->
+
+```bash
+sudo apt install git
+git config --global user.name "Your Name"
+git config --global user.email "youremail@domain.com"
+# set default editor
+git config --global color.ui auto
+git config --global core.editor "code --wait"
+# auto-converting CRLF (carriage return[\r] & line feed[\n])
+git config --global core.autocrlf false
+git config --global diff.tool vscode
+
+ssh-keygen -t ed25519 -C "your_email@example.com"
+```
+
+```powershell
+# setup SSH in admin powershell
+ssh-keygen -t ed25519 -C "rashed6585@gmail.com"
+# start the ssh-agent in the background
+Get-Service -Name ssh-agent | Set-Service -StartupType Manual
+Start-Service ssh-agent
+# add ssh
+ssh-add C:\Users\rashe\.ssh\id_ed25519
+```
+
+```bash
+# Copy the SSH public key to your clipboard.
+clip < ~/.ssh/id_ed25519.pub
+# or
+cat ~/.ssh/id_ed25519.pub | clip
+# output
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5BBBIPm9EOXSQ5fNYVtEz40NiggggI3FQZcVmZcuRHGoXqrht rashed6585@gmail.com
+# Adding a new SSH key to your GitHub account in setup avater 
+```
+
+
+
+```mermaid
+gitGraph
+  commit
+  branch develop-1
+  commit
+  branch develop-2
+  checkout develop-2
+  commit
+  commit
+  checkout develop-1
+  commit
+  commit
+  checkout develop-2
+  checkout main
+  merge develop-1
+  checkout main
+  merge develop-2
+  commit
+  commit
+```
+
+
+
+- create a repository in github eg. project-starship
+- main fleet:
+```bash
+  mkdir project-starship
+  echo "command on enterprise ship" > enterprise-fleet.txt
+  git init
+  git add .
+  # or git add main-fleet.txt
+  git status -s
+  git commit -m "initial enterprise commit"
+  echo "action on main ship" >> enterprise-fleet.txt
+  git status -s
+  git diff
+  echo "repair action on main ship" > enterprise-fleet-repair.txt
+  # -am is commit all modified files
+  git commit -am "commit on enterprise fleet"
+  git tag v0.1.0 -m "initial version"
+  git log
+  git show 234567 # hash name
+  # add to remote branch
+  git remote add origin https://github.com/rashed6585/project-starship.git
+  git branch -M master
+  git push -u origin master
+  # add branch 
+  git branch -M worker
+  echo "maintenance on going with worker branch" >> enterprise-fleet-repair.txt
+  git commit -m "worker branch created"
+  git push -u origin worker
+  git checkout -
+  git commit -m "merge worker node"
+  git merge worker
+  # delete branch in local
+  git branch -d worker
+  # delete branch in remote
+  git push https://github.com/rashed6585/project-starship.git --delete worker
+  # multiple commit on a single file
+  echo "stage for commit-1" >> enterprise-fleet.txt
+  echo "stage for commit-2" >> enterprise-fleet.txt
+  git add -p
+  # merge conflict
+  # merge rebase
+```
+
+- side-fleet-01:
+```bash
+  git branch -M dev
+  git checkout dev
+  echo "command on site ship" > side-fleet.txt
+
+```
+
+
+
+
+    git remote add origin https://github.com/rashed6585/testing-git.git
+    git branch -M master
+    git push -u origin master
+    # git branch -m <old-name> <new-name>
+    git branch -m master home
+    echo "edit file with branch (home)" >> readme.md
+    
+
+
+
+
+- local user-2:
+- push local user-1 to local user-2:
+- track history
+
+
+
+</details>
+
+
 
 <details>
 <summary><b style="color:Maroon;">other</b></summary>
@@ -248,6 +384,10 @@ ip addr
 ip a
 ip addr show eth0 | grep -oP '(?<=inet\s)\d+(\.\d+){3}'
 ip addr | grep eth0
+# write to file with our opening
+echo "hello world" > my_file.txt
+# if need to append
+echo "hello universe" >> my_file.txt
 
 ```
 </details>
