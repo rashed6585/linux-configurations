@@ -388,6 +388,8 @@ ip addr | grep eth0
 echo "hello world" > my_file.txt
 # if need to append
 echo "hello universe" >> my_file.txt
-
+# apt installed list
+sudo apt list --installed
+sudo apt list --installed | grep postgres
 ```
 </details>
