@@ -1,5 +1,15 @@
 #!/bin/bash
 
+echo "installing zsh, exa, bat, vim ..."
+cd ~
+sudo apt update && sudo apt upgrade
+sudo apt install zsh wget exa bat vim git -y
+echo "$(zsh --version) installation done!"
+echo "$SHELL is current shell"
+sed -2i "if test -t 1;then exec zsh fi" >> ~/.bashrc
+echo "$SHELL is current shell"
+echo "installing ohmyzsh..."
+sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 echo "installing plugins..."
 git clone https://github.com/zsh-users/zsh-autosuggestions.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
