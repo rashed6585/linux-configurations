@@ -218,8 +218,8 @@ https://docs.docker.com/desktop/install/ubuntu/
 </sub>
 </details>
 
-<!-- <details>
-<summary><b style="color:Maroon;">git</b></summary> -->
+<details>
+<summary><b style="color:Maroon;">git</b></summary>
 
 ```bash
 sudo apt install git
