@@ -393,3 +393,28 @@ sudo apt list --installed
 sudo apt list --installed | grep postgres
 ```
 </details>
+
+<details>
+<summary><b style="color:Maroon;">tmux terminal</b></summary>
+
+
+```bash
+# get tmux
+cd ~
+sudo apt update
+sudo apt install tmux
+# configure Tmux
+# install Tmux Plugin Manager
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+ip a
+ip addr show eth0 | grep -oP '(?<=inet\s)\d+(\.\d+){3}'
+ip addr | grep eth0
+# write to file with our opening
+echo "hello world" > my_file.txt
+# if need to append
+echo "hello universe" >> my_file.txt
+# apt installed list
+sudo apt list --installed
+sudo apt list --installed | grep postgres
+```
+</details>
