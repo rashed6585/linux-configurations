@@ -403,18 +403,35 @@ sudo apt list --installed | grep postgres
 cd ~
 sudo apt update
 sudo apt install tmux
+# sudo apt -y remove tmux
+
 # configure Tmux
 # install Tmux Plugin Manager
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-ip a
-ip addr show eth0 | grep -oP '(?<=inet\s)\d+(\.\d+){3}'
-ip addr | grep eth0
-# write to file with our opening
-echo "hello world" > my_file.txt
-# if need to append
-echo "hello universe" >> my_file.txt
-# apt installed list
-sudo apt list --installed
-sudo apt list --installed | grep postgres
+cp -f /tmp/linux-configurations/.tmux.conf ~/
+# type this in terminal if tmux is already running
+tmux source ~/.tmux.conf
+# Install plugin: CTRL+b+I
 ```
+
+<sub>list of commands<sub>
+
+- Create window
+
+  - Create a new: CTRL+b+c
+  - rename a window: CTRL+b+,
+  - To switch to the next window: CTRL+b+n
+  - To switch to the previous: CTRL+b+p
+  - list of windows: CTRL+b+w
+  - Close a tmux window: CTRL+b+&
+  - Panes vertical split: CTRL+b+%
+  - Panes horizontal split: CTRL+b+"
+  - Move the current pane right: CTRL+b+Arrow key.
+  - show pane numbers: CTRL+b+q
+  - kill pane: CTRL+b+x
+  - swap panes: CTRL+b+o
+  - Install plugin: CTRL+b+I
+  - Update plugin: CTRL+b+U
+  - Uninstall plugin: CTRL+b+u
+
 </details>
