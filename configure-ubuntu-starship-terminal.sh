@@ -35,4 +35,4 @@ cp -f /tmp/linux-configurations/dotfiles/starship.toml ~/.config/
 sudo apt install tmux
 # install Tmux Plugin Manager
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-~/.tmux.conf
+cp -f /tmp/linux-configurations/dotfiles/.tmux.conf ~/
