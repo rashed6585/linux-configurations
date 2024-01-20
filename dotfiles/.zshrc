@@ -8,7 +8,9 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="strug"
+# ZSH_THEME="robbyrussell"
+
+ZSH_THEME=""
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -72,6 +74,10 @@ ZSH_THEME="strug"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(docker github git zsh-autosuggestions zsh-syntax-highlighting ohmyzsh-full-autoupdate zsh-bat)
 
+#Star Ship
+eval "$(starship init zsh)"
+export STARSHIP_CONFIG=~/.config/starship.toml
+
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -97,22 +103,5 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-alias zshconfig="mate ~/.zshrc"
-alias ohmyzsh="mate ~/.oh-my-zsh"
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
-#alias exah='exa -abghHliS'
-#alias exall='exa --long --tree'
-
-# enable color support of ls and also add handy aliases
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
-
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
-fi
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"

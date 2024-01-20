@@ -114,6 +114,19 @@ wsl --terminate <Distribution Name>
 wsl -d <Distribution Name>
 ```
 
+# /.wslconfig file in windows
+```
+[wsl2]
+memory=6GB                  # Make sure you have this amount available to use!
+swapFile=E:\\wsl2-swap.vhdx # I put mine off my SSD, but this is optional.
+
+# Another option is to disable swap but if the VM goes out of memory, the
+# OOM killer might start killing important processes or the VM may crash.
+#
+# Uncomment the line below this to use no swap file at all in the WSL 2 VM.
+#swap=0
+```
+
 **Issues resolution**
 
 * <sub>ping: www.google.com: Temporary failure in name resolution<sub>
@@ -430,6 +443,8 @@ tmux source ~/.tmux.conf
   - show pane numbers: CTRL+b+q
   - kill pane: CTRL+b+x
   - swap panes: CTRL+b+o
+  - exclude panes to terminal: CTRL+b+!
+  - list of active terminal: CTRL+b+s
   - Install plugin: CTRL+b+I
   - Update plugin: CTRL+b+U
   - Uninstall plugin: CTRL+b+u

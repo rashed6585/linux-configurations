@@ -1,0 +1,134 @@
+# Inserts a blank line between shell prompts
+add_newline = false
+# A minimal left prompt
+format = """$directory$character"""
+palette = "catppuccin_mocha"
+# move the rest of the prompt to the right
+right_format = """$all"""
+
+[sudo]
+disabled = false
+symbol = '👩‍💻 '
+style = 'bold green'
+
+[nodejs]
+disabled = false
+format = "via [$symbol$version]($style) "
+symbol = " "
+style = "bold green"
+
+[directory]
+read_only = " "
+style = "blue"
+truncation_length = 8
+truncation_symbol = '.../'
+truncate_to_repo = false
+
+[directory.substitutions]
+'/mnt/e/Code' = 'code-directory'
+
+[character]
+success_symbol = "[❯](purple)"
+error_symbol = "[❯](red)"
+vicmd_symbol = "[❮](green)"
+
+[username]
+style_user = "bold green"
+show_always = false
+
+[hostname]
+disabled = false
+ssh_only = true
+trim_at = "."
+format = "[$hostname]($style) in "
+style = "green dimmed bold"
+
+[jobs]
+disabled = false
+format = "[$symbol]($style)"
+number_threshold = 1
+symbol = ""
+style = "bold red"
+
+[git_branch]
+format = "[$symbol$branch]($style) "
+symbol = " "
+style = "cyan"
+
+[git_status]
+format = '([\[$all_status$ahead_behind\]]($style) )'
+style = "cyan"
+
+[git_state]
+format = '\([$state( $progress_current/$progress_total)]($style)\) '
+style = "cyan"
+
+[git_metrics]
+disabled = false
+
+[docker_context]
+disabled = false
+symbol = " "
+style = "blue bold"
+format = "via [$symbol$context]($style) "
+only_with_files = true
+
+[cmd_duration]
+format = "[$duration]($style)"
+style = "yellow"
+
+[python]
+format = 'via [${symbol}${pyenv_prefix}( \($virtualenv\))]($style) '
+symbol = " "
+style = "bold green"
+
+[localip]
+disabled = true
+ssh_only = false
+format = '@[$localipv4](bold red) '
+
+[memory_usage]
+disabled = true
+symbol = " "
+format = "$symbol[${ram}( | ${swap})]($style) "
+threshold = 70
+style = "bold dimmed white"
+
+[time]
+disabled = false
+style = "bold white"
+format = "[$time]($style)"
+
+[custom.stunnel]
+when = "ps aux | grep stunnel | grep -v grep"
+command = "ps -o etime= -p $(ps aux | grep stunnel | grep -v grep | awk '{print $2}')"
+style = "red"
+format = "[TUNNEL OPEN for $output]($style)"
+
+[palettes.catppuccin_mocha]
+rosewater = "#f5e0dc"
+flamingo = "#f2cdcd"
+pink = "#f5c2e7"
+mauve = "#cba6f7"
+red = "#f38ba8"
+maroon = "#eba0ac"
+peach = "#fab387"
+yellow = "#f9e2af"
+green = "#a6e3a1"
+teal = "#94e2d5"
+sky = "#89dceb"
+sapphire = "#74c7ec"
+blue = "#89b4fa"
+lavender = "#b4befe"
+text = "#cdd6f4"
+subtext1 = "#bac2de"
+subtext0 = "#a6adc8"
+overlay2 = "#9399b2"
+overlay1 = "#7f849c"
+overlay0 = "#6c7086"
+surface2 = "#585b70"
+surface1 = "#45475a"
+surface0 = "#313244"
+base = "#1e1e2e"
+mantle = "#181825"
+crust = "#11111b"
