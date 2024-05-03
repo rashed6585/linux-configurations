@@ -36,3 +36,4 @@ sudo apt install tmux
 # install Tmux Plugin Manager
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 cp -f /tmp/linux-configurations/dotfiles/.tmux.conf ~/
+# Press prefix + I (capital i, as in Install) to fetch the plugin.

@@ -9,6 +9,8 @@ alias fd="find . -type d -name"
 alias grep="grep --color"
 alias sgrep="grep -R -n -H -C 5 --exclude-dir={.git,.svn,CVS}"
 alias processes="ps -f"
+alias apt-update="sudo apt update"
+alias apt-upgrade="sudo apt upgrade"
 
 # git
 # ! define in ~/.gitconfig
@@ -17,6 +19,8 @@ alias processes="ps -f"
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
+alias rmdir='rm -r -v'
+
 
 # exa for ls bunding
 alias l='exa -l --icons -a'
@@ -39,9 +43,12 @@ alias zshrc="vim ~/.zshrc"
 alias zsh-alias="vim ~/.oh-my-zsh/custom/aliases.zsh"
 alias refreshenv="source $HOME/.zshrc"
 
+# starship
+alias starship-conf="vim ~/.config/starship.toml"
+
 # tmux
 # alias tmain="~/.dotfiles/scripts/tmux-folder-session.sh ' main'"
-# alias tmuxconf="code ~/.tmux.conf.local"
+alias tmux-conf="vim ~/.tmux.conf"
 
 # git
 # ! define in ~/.gitconfig
