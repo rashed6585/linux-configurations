@@ -19,9 +19,9 @@ git clone https://github.com/fdellwing/zsh-bat.git ${ZSH_CUSTOM:-~/.oh-my-zsh/cu
 # https://safjan.com/top-popular-zsh-plugins-on-github-2023/
 cd /tmp
 git clone https://github.com/rashed6585/linux-configurations.git
-cp -f /tmp/linux-configurations/.zshrc ~/
+cp -f /tmp/linux-configurations/dotfiles/.zshrc ~/
 source ~/.zshrc
 echo "configuring vim..."
 mkdir -p ~/.vim ~/.vim/autoload ~/.vim/backup ~/.vim/colors ~/.vim/plugged
-cp -f /tmp/linux-configurations/.vimrc ~/
+cp -f /tmp/linux-configurations/dotfiles/.vimrc ~/
 echo "installation done"
