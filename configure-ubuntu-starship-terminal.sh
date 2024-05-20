@@ -3,7 +3,7 @@
 cd ~
 sudo apt update && sudo apt upgrade
 # install zsh
-sudo apt install zsh wget exa bat vim fzf git net-tools -y
+sudo apt install zsh wget exa bat vim fzf git net-tools unzip -y
 echo "$(zsh --version) installation done!"
 echo "$SHELL is current shell"
 sed -i "2 i if test -t 1;then exec zsh fi" ~/.bashrc

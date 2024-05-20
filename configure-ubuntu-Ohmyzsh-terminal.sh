@@ -3,7 +3,7 @@
 echo "installing zsh, exa, bat, vim ..."
 cd ~
 sudo apt update && sudo apt upgrade
-sudo apt install zsh wget exa bat vim git -y
+sudo apt install zsh wget exa bat vim git unzip -y
 echo "$(zsh --version) installation done!"
 echo "$SHELL is current shell"
 sed -i "2 i if test -t 1;then exec zsh fi" ~/.bashrc
