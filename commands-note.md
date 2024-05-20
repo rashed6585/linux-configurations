@@ -155,6 +155,10 @@ swapFile=E:\\wsl2-swap.vhdx # I put mine off my SSD, but this is optional.
 sudo bash -c 'echo "nameserver 8.8.8.8" >> /etc/resolv.conf'
 sudo bash -c 'echo "nameserver 8.8.4.4" >> /etc/resolv.conf'
 
+# name resolution for robi
+sudo bash -c 'echo "nameserver 10.101.11.67" >> /etc/resolv.conf'
+
+
 # An IP address of 0.0.0.0 indicates no server is specified
 sudo bash -c 'echo "nameserver 0.0.0.0" >> /etc/resolv.conf'
 # change time zone
@@ -286,8 +290,17 @@ ssh-add C:\Users\rashe\.ssh\id_ed25519
 ```bash
 # Copy the SSH public key to your clipboard.
 clip < ~/.ssh/id_ed25519.pub
+
 # or
 cat ~/.ssh/id_ed25519.pub | clip
+
+# or 
+## sudo apt-get install xclip
+## alias setclip="xclip -selection c"
+## alias getclip="xclip -selection c -o"
+cat ~/.ssh/id_ed25519.pub | setclip
+getclip
+
 # output
 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5BBBIPm9EOXSQ5fNYVtEz40NiggggI3FQZcVmZcuRHGoXqrht rashed6585@gmail.com
 # Adding a new SSH key to your GitHub account in setup avater 
