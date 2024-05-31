@@ -3,7 +3,7 @@
 echo "installing zsh, exa, bat, vim ..."
 cd ~
 sudo apt update && sudo apt upgrade
-sudo apt install zsh wget exa bat vim git -y
+sudo apt install zsh wget exa bat vim git unzip -y
 echo "$(zsh --version) installation done!"
 echo "$SHELL is current shell"
 sed -i "2 i if test -t 1;then exec zsh fi" ~/.bashrc
@@ -19,9 +19,9 @@ git clone https://github.com/fdellwing/zsh-bat.git ${ZSH_CUSTOM:-~/.oh-my-zsh/cu
 # https://safjan.com/top-popular-zsh-plugins-on-github-2023/
 cd /tmp
 git clone https://github.com/rashed6585/linux-configurations.git
-cp -f /tmp/linux-configurations/.zshrc ~/
+cp -f /tmp/linux-configurations/dotfiles/.zshrc ~/
 source ~/.zshrc
 echo "configuring vim..."
 mkdir -p ~/.vim ~/.vim/autoload ~/.vim/backup ~/.vim/colors ~/.vim/plugged
-cp -f /tmp/linux-configurations/.vimrc ~/
+cp -f /tmp/linux-configurations/dotfiles/.vimrc ~/
 echo "installation done"
