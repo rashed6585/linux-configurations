@@ -1,5 +1,11 @@
 ## Docker Command Cheat Sheet
 
+### Version
+
+- `docker version`: Outputs the version numbers of Docker.
+- `docker --version`: Outputs the version number of the Docker CLI.
+- `docker compose version`: Show the Docker Compose version information.
+
 ### Container Management
 
 - `docker run <image>`: Create and start a new container from an image.
