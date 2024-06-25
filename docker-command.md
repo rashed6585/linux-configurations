@@ -1,5 +1,6 @@
 ## Docker Command Cheat Sheet
 
+
 ### Version
 
 - `docker version`: Outputs the version numbers of Docker.
@@ -8,7 +9,6 @@
 
 ### Container Management
 
-- `docker run <image>`: Create and start a new container from an image.
 - `docker start <container>`: Start a stopped container.
 - `docker stop <container>`: Stop a running container.
 - `docker restart <container>`: Restart a running container.
@@ -25,6 +25,22 @@
 - `docker build -t imagename/tag`: Builds and tags an image for easier tracking
 - `docker build https://yourserver/file.tar.gz`: Builds an image from a remote tar archive
 - `docker build -t image:1.0<<EOFFROM busyboxRUN echo “hello world”EOF`: Builds an image via a Dockerfile that is passed through STDIN
+
+
+### Run a new Container
+
+- `docker run -it --rm -d -p HOST_PORT:CONTAINER_PORT --name CONTAINER_NAME IMAGE`:
+    - `-i or --interactive`: Terminal will transfer the input to container 
+    - `-t or ---tty`: Allocates a pseudo-TTY (a terminal interface). 
+    - `-d or --detach`: Run the container in the background
+    - `-p or --publish`: Explicitly map a single port or range of ports in the container to the host.
+    - `-P or --publish-all`: Publishes all the exposed ports to the host. Docker binds each exposed port to a random port on the host.
+    - `--rm:`: Automatically removes the container when it exits. This ensures that no stopped container is left on the system once stop the container.
+    - `HOST_PORT`: The port number on host machine where you want to receive traffic
+    - `CONTAINER_PORT`: The port number within the container that's listening for connections
+    - For example: `docker run -it --rm -d -p 8080:80 --name nginx-reverse-proxy nginx`
+    - For example: `docker run -it --rm -d -p 8080:80 --name nginx-reverse-proxy nginx`
+
 
 
 ### Container Compose
@@ -68,6 +84,7 @@
 - `docker network inspect <network>`: Inspect a network.
 - `docker network connect <network> <container>`: Connect a container to a network.
 - `docker network disconnect <network> <container>`: Disconnect a container from a network.
+- `docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}} <container>`: Docker container's IP address from the host.
 
 ### Volume Management
 
