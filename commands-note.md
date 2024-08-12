@@ -232,7 +232,7 @@ sudo service docker status # or sudo systemctl docker status
 sudo docker run hello-world
 ```
 
-<sub>Run Docker as a non-root user</sub>
+<sub>To run Docker without sudo, create a group docker for Docker users and add  current user to that group.</sub>
 
 ```bash
 USER=<USERNAME> #u-2304-wsl-node-02
@@ -242,6 +242,28 @@ sudo usermod -aG docker $USER
 
 newgrp docker
 ```
+
+<Sub>If using a non-default WSL distribution, like a custom Linux distro, Docker might not start automatically when launch WSL. To ensure Docker starts every time open WSL, use the following commands:</Sub>
+
+```bash
+sudo systemctl enable docker.service
+sudo systemctl enable containerd.service
+```
+
+**Expose Docker Engine on Windows**
+<sub>To access the Docker Engine from Windows, need to configure remote access for Docker. There are two ways to do this, by modifying the docker daemon, or by overriding systemd launch configuration.</sub>
+
+
+```bash
+sudo systemctl edit docker.service
+# Then add, or modify, the following lines
+[Service]
+ExecStart=/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:2375
+# then need to restart the Docker service after below command
+sudo systemctl daemon-reload
+sudo systemctl restart docker.service
+```
+
 
 <Sub>if error "Docker is not running" found, reason this errors occurs is because Ubuntu 22.04 LTS uses iptables-nft by default. Need to switch to iptables-legacy so that Docker will work again:</Sub>
 
@@ -257,6 +279,7 @@ sudo service docker start
 docker volume create portainer_data
 # download and install the Portainer Server container:
 docker run -d -p 8000:8000 -p 9443:9443 --name portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest
+```
 
 **Install docker desktop on ubuntu**
 
