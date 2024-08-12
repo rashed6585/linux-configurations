@@ -29,16 +29,18 @@
 
 ### Run a new Container
 
-- `docker run -it --rm -d -p HOST_PORT:CONTAINER_PORT --hostname HOST_NAME --name CONTAINER_NAME IMAGE`:
+- `docker run -it --rm -d --network NETWORK_NAME -p HOST_PORT:CONTAINER_PORT --hostname HOST_NAME --name CONTAINER_NAME IMAGE`:
     - `-i or --interactive`: Terminal will transfer the input to container 
     - `-t or ---tty`: Allocates a pseudo-TTY (a terminal interface). 
     - `-d or --detach`: Run the container in the background
     - `-p or --publish`: Explicitly map a single port or range of ports in the container to the host.
     - `-P or --publish-all`: Publishes all the exposed ports to the host. Docker binds each exposed port to a random port on the host.
     - `--rm:`: Automatically removes the container when it exits. This ensures that no stopped container is left on the system once stop the container.
+    - `--network:`: Add to specific network
     - `HOST_PORT`: The port number on host machine where you want to receive traffic
     - `HOST_NAME`: Custom Hostname of the container
     - `CONTAINER_PORT`: The port number within the container that's listening for connections
+    - `NETWORK_NAME`: User define network
     - For example: `docker run -it --rm -d -p 8080:80 --name nginx-reverse-proxy nginx`
     - For example: `docker run -it --rm -d -p 8080:80 --name nginx-reverse-proxy nginx`
 
