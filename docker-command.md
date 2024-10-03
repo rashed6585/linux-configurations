@@ -103,4 +103,7 @@
 - `docker logs <container>`: View the logs of a container.
 - `docker inspect <container>`: Inspect a container.
 - `docker version`: Show Docker version information.
-- `docker info`: Show Docker system information.
+- `docker system df`: Show docker disk usage.
+- `docker system events`: Get real time events from the server.
+- `docker system info`: Display system-wide information.
+- `docker system prune`: Remove unused data.
