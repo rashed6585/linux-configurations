@@ -23,3 +23,8 @@
 - `sudo chown appuser:appuser /home/log/`: Change the ownership of the directory to "appuser".
 - `sudo chmod 700 /home/log/`: have read, write, and execute permissions
 - `sudo chmod 755 /home/log/`: have read and execute permissions only
+
+- `sudo -u appuser python3 -m venv /home/appuser/.venv`: Create a virtual environment for "appuser".
+- `sudo -u appuser /home/appuser/.venv/bin/pip install --upgrade pip`: Ensure pip is available within the virtual environment.
+- `sudo visudo -f /etc/sudoers.d/appuser`: Edit the sudoers file to allow appuser to use pip only within the virtual environment.
+- `appuser ALL=(ALL) NOPASSWD: /home/appuser/.venv/bin/python3, /home/appuser/.venv/bin/pip`: allow appuser to use Python and pip within the virtual environment.
