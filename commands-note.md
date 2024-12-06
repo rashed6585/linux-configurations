@@ -12,6 +12,7 @@
 ```powershell
 dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
 dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+sc config LxssManager start=auto
 ```
 
 <sub>Install WSL command and set to WSL 2 by default<sub>
@@ -299,6 +300,9 @@ https://docs.docker.com/desktop/install/ubuntu/
 sudo apt install git
 git config --global user.name "Your Name"
 git config --global user.email "youremail@domain.com"
+# ignore ssl verification
+git config http.sslVerify false
+git -c http.sslVerify=false clone "repository-name"
 # set default editor
 git config --global color.ui auto
 git config --global core.editor "code --wait"
@@ -599,8 +603,69 @@ chmod 600 ~/.ssh/authorized_keys
 rm C:\Users\yourUserName\authorized_keys
 # on widows CMD
 ssh login-id@ubuntu-Host-Ip
-# on windows connect b 
+# on windows connect b
+
+# copy with scp
+# scp <source> <destination>
+# To copy a file from B to A while logged into B:
+# scp /path/to/file username@a:/path/to/destination
+# To copy a file from B to A while logged into A:
+# scp username@b:/path/to/file /path/to/destination
+
+scp sqoop_unique_b_party.py saapadmin@10.104.9.94:/home/saapadmin/cx360_jobs/unique_b_party
+```
+create `.wgetrc` with below no certificates
+
+```powershell
+use_proxy=on
+check_certificate=off
+http_proxy=http://swgauth.robi.com.bd:8080
+https_proxy=http://swgauth.robi.com.bd:8080
+```
+check ssh property:
+
+```powershell
+Ciphers: ssh -Q cipher
+MACs: ssh -Q mac
+KexAlgorithms: ssh -Q kex
+PubkeyAcceptedKeyTypes: ssh -Q key
+```
 
 
+```powershell
+Host [host_alias] 
+	HostName [example.com] 
+	User [your_username] 
+	Port 22 
+	ProxyJump [proxy_user@proxy_host:proxy_port] 
+	Ciphers [cipher_list]
+```
+
+
+</details>
+
+
+<details>
+<summary><b style="color:Maroon;">sqlcl install to Ubuntu</b></summary>
+
+```bash
+# install Java
+sudo apt update
+sudo apt install openjdk-11-jdk
+echo "export JAVA_HOME=/usr/lib/jvm/java-11-openjdk" >> ~/.bashrc #or ~/.zshrc 
+echo "export PATH=\$JAVA_HOME/bin:\$PATH" >> ~/.bashrc #or ~/.zshrc
+source ~/.bashrc #or ~/.zshrc
+
+# unzip sqlcl
+cd /path/to/download
+unzip sqlcl-*.zip -d /opt/sqlcl
+echo "export PATH=$PATH:/opt/sqlcl/sqlcl/bin" >> ~/.bashrc #or ~/.zshrc
+source ~/.bashrc #or ~/.zshrc
+
+# Check the ownership and permissions 
+ls -ld /opt/sqlcl/sqlcl/bin
+sudo chown -R your-username:your-username /opt/sqlcl
+sudo chmod -R a+rx /opt/sqlcl
+chmod +x /opt/sqlcl/sqlcl/bin/sql
 ```
 </details>
