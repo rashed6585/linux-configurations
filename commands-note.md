@@ -611,6 +611,7 @@ ssh login-id@ubuntu-Host-Ip
 # scp /path/to/file username@a:/path/to/destination
 # To copy a file from B to A while logged into A:
 # scp username@b:/path/to/file /path/to/destination
+# give -r in case of folder
 
 scp sqoop_unique_b_party.py saapadmin@10.104.9.94:/home/saapadmin/cx360_jobs/unique_b_party
 ```
