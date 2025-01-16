@@ -3,7 +3,7 @@
 echo "installing zsh, exa, bat, vim ..."
 cd ~
 sudo apt update && sudo apt upgrade
-sudo apt install zsh wget exa bat vim git unzip -y
+sudo apt install zsh wget exa bat vim git unzip curl -y
 echo "$(zsh --version) installation done!"
 echo "$SHELL is current shell"
 sed -i "2 i if test -t 1;then exec zsh fi" ~/.bashrc
@@ -25,4 +25,8 @@ source ~/.zshrc
 echo "configuring vim..."
 mkdir -p ~/.vim ~/.vim/autoload ~/.vim/backup ~/.vim/colors ~/.vim/plugged
 cp -f /tmp/linux-configurations/dotfiles/.vimrc ~/
+echo "installing uv"
+curl -LsSf https://astral.sh/uv/install.sh | sh
+echo 'eval "$(uv generate-shell-completion zsh)"' >> ~/.zshrc
+echo 'eval "$(uvx --generate-shell-completion zsh)"' >> ~/.zshrc
 echo "installation done"
