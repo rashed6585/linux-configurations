@@ -12,7 +12,19 @@
 ```powershell
 dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
 dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+
+Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\LxssManager" -Name "Start" -Value 2
+
 sc config LxssManager start=auto
+sc start LxssManager
+```
+or Using Command Prompt (reg.exe)
+
+```powershell
+
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\LxssManager" /v Start /t REG_DWORD /d 2 /f
+gpupdate /force
+
 ```
 
 <sub>Install WSL command and set to WSL 2 by default<sub>
@@ -339,7 +351,15 @@ getclip
 
 # output
 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5BBBIPm9EOXSQ5fNYVtEz40NiggggI3FQZcVmZcuRHGoXqrht rashed6585@gmail.com
-# Adding a new SSH key to your GitHub account in setup avater 
+# Adding a new SSH key to your GitHub account in setup avater
+
+# access gitlab through Personal Access Token (PAT) and remove repetated access key requirement and store the token in ~/.git-credentials:
+git config --global credential.helper store
+# for windows
+git config --global credential.helper manager-core
+# add credencial to ~/.git-credentials
+echo "https://<username>:<access_token>@gitlab.com" >> ~/.git-credentials
+# also need to check ~/.gitconfig for safe directory
 ```
 
 
@@ -612,6 +632,48 @@ ssh login-id@ubuntu-Host-Ip
 # To copy a file from B to A while logged into A:
 # scp username@b:/path/to/file /path/to/destination
 # give -r in case of folder
+```
+</details>
+
+<details>
+
+<summary><b style="color:Maroon;">To remove files in a Linux folder that were created before a specific date</b></summary>
+
+
+```bash
+# get the list of file where before LOG_2024-12-20 
+find . -type f -name 'LOG_*' ! -newermt 2024-12-20
+# get the list and delete of file where before LOG_2024-12-20
+find . -type f -name 'LOG_*' ! -newermt 2024-12-20 -exec rm {} \;
+
+```
+</details>
+
+
+<details>
+
+<summary><b style="color:Maroon;">Install vs-code extension Vsix on remote VM</b></summary>
+
+
+```bash
+# download vscode-server
+wget  https://update.code.visualstudio.com/commit:<commit-id>/server-linux-x64/stable vscode-server-linux-x64.tar.gz
+# Upload the file to the remote machine
+scp -r <file-you-just-download> <user-account>@<remote-machine-domain>:<remote-machine-home-folder>/.vscode-server/bin
+# go to remote server
+cd ~/.vscode-server/bin
+# uncompress the tar file
+tar -xzvf vscode-server-linux-x64.tar.gz
+# rename the vscode-server-linux-x64 to <commit-id>
+mv vscode-server-linux-x64 <commit-id>
+# run below command on local vscode terminal 
+~/.vscode-server/bin/<commit-id>/bin/remote-cli/code --install-extension </tmp/extensions.vsix>;
+
+```
+</details>
+
+
+
 
 scp sqoop_unique_b_party.py saapadmin@10.104.9.94:/home/saapadmin/cx360_jobs/unique_b_party
 ```
