@@ -42,8 +42,6 @@
     - `CONTAINER_PORT`: The port number within the container that's listening for connections
     - `NETWORK_NAME`: User define network
     - For example: `docker run -it --rm -d -p 8080:80 --name nginx-reverse-proxy nginx`
-    - For example: `docker run -it --rm -d -p 8080:80 --name nginx-reverse-proxy nginx`
-
 
 
 ### Container Compose
@@ -79,6 +77,10 @@
 - `docker push <image>`: Push an image to a registry.
 - `docker images`: List downloaded images.
 - `docker rmi <image>`: Remove an image.
+- `docker save -o <file_name>.tar <image><tag>`: downloads the image as a regular .tar file
+- `docker load -i <file_name>.tar`: Load on other server:
+- `docker tag <image><tag> <registry-url>/<image><tag>`: Upload/Publish to a registry (GitHub/GitLab/Docker Hub)
+
 
 ### Network Management
 
@@ -107,3 +109,6 @@
 - `docker system events`: Get real time events from the server.
 - `docker system info`: Display system-wide information.
 - `docker system prune`: Remove unused data.
+
+### demon management Commands
+
