@@ -17,7 +17,6 @@
 - `docker ps -a`: List all containers (including stopped ones).
 - `docker image prune`: Clears an unused image.
 
-
 ### Container Build
 
 - `docker build`: Builds an image from a Dockerfile in the current directory
@@ -25,7 +24,6 @@
 - `docker build -t imagename/tag`: Builds and tags an image for easier tracking
 - `docker build https://yourserver/file.tar.gz`: Builds an image from a remote tar archive
 - `docker build -t image:1.0<<EOFFROM busyboxRUN echo “hello world”EOF`: Builds an image via a Dockerfile that is passed through STDIN
-
 
 ### Run a new Container
 
@@ -42,7 +40,6 @@
     - `CONTAINER_PORT`: The port number within the container that's listening for connections
     - `NETWORK_NAME`: User define network
     - For example: `docker run -it --rm -d -p 8080:80 --name nginx-reverse-proxy nginx`
-
 
 ### Container Compose
 
@@ -81,7 +78,6 @@
 - `docker load -i <file_name>.tar`: Load on other server:
 - `docker tag <image><tag> <registry-url>/<image><tag>`: Upload/Publish to a registry (GitHub/GitLab/Docker Hub)
 
-
 ### Network Management
 
 - `docker network create <network>`: Create a new network.
@@ -109,6 +105,8 @@
 - `docker system events`: Get real time events from the server.
 - `docker system info`: Display system-wide information.
 - `docker system prune`: Remove unused data.
+- `sudo find /var/lib/docker/containers/ -name '*-json.log' -ctime +7 -exec truncate -s 0 {} \;` : clean the docker log before 7 days.
 
 ### demon management Commands
-
+- `sudo systemctl daemon-reload`
+- `sudo systemctl restart docker`
