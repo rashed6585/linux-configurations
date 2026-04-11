@@ -36,7 +36,10 @@ alias ip-public="curl -4 ifconfig.co"
 # alias python="python3"
 
 # directories
-alias goto-code="cd /mnt/e/Code"
+alias goto-code="cd /mnt/c/pDrive/rCode"
+
+# development planel
+alias tmux-dev="~/.tmux-bootstrap.sh"
 
 # zsh
 alias zshrc="vim ~/.zshrc"
