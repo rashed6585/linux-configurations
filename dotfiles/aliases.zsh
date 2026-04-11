@@ -41,6 +41,24 @@ alias goto-code="cd /mnt/c/pDrive/rCode"
 # development planel
 alias tmux-dev="~/.tmux-bootstrap.sh"
 
+# stdout and stderr
+alias trace-log="logrun"
+
+logrun() {
+  local logfile="$HOME/wsl-temp-out/output.txt"
+  local timestamp
+  timestamp="$(date '+%Y-%m-%d %H:%M:%S')"
+
+  {
+    echo "[$timestamp] CMD: $*"
+    "$@"
+    local exit_code=$?
+    echo "[EXIT CODE: $exit_code]"
+    echo "----------------------------------------"
+    return $exit_code
+  } 2>&1 | tee -a "$logfile"
+}
+
 # zsh
 alias zshrc="vim ~/.zshrc"
 alias zsh-alias="vim ~/.oh-my-zsh/custom/aliases.zsh"
