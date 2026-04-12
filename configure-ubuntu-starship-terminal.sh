@@ -8,6 +8,8 @@ echo "$(zsh --version) installation done!"
 echo "$SHELL is current shell"
 sed -i "2 i if test -t 1;then exec zsh fi" ~/.bashrc
 echo "$SHELL is current shell"
+# install nvm
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash
 # install ohmyzsh
 sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 echo "installing plugins..."
